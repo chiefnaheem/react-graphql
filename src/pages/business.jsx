@@ -27,9 +27,9 @@ export default function BusinessPage() {
 
 
 
-          <EditBusinessForm project={data.business} />
+          <EditBusinessForm business={data.business} />
 
-          <DeleteBusinessButton projectId={data.business.id} />
+          <DeleteBusinessButton businessId={data.business.id} />
         </div>
       )}
     </>
