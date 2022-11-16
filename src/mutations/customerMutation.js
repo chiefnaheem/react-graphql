@@ -1,31 +1,31 @@
 import { gql } from "@apollo/client";
 
-const CREATE_BUSINESS = gql`
+const CREATE_CUSTOMER = gql`
   mutation {
-    createBusiness(createBusiness: { name: $name, type: $type, address: $address, owner: $owner }) {
-      name
-      type
+    createCustomer(createBusiness: { firstName: $firstName, lastName: $lastName, businesses: $businesses, address: $address }) {
+      firstName
+      lastName
       address
     }
   }
 `;
 
-const UPDATE_BUSINESS = gql`
+const UPDATE_CUSTOMER = gql`
   mutation {
-    updateBusiness(id: $id, updateBusiness: { name: $name, type: $type, address: $address }) {
-      name
-      type
+    updateCustomer(id: $id, updateCustomer: { firstName: $firstName, lastName: $lastName, address:$address }) {
+      firstName
+      lastName
       address
     }
   }
 `;
 
-const DELETE_BUSINES = gql`
+const DELETE_CUSTOMER = gql`
   mutation {
-    deleteBusiness(id: $id) {
+    deleteCustomer(id: $id) {
       name
     }
   }
 `;
 
-export { CREATE_BUSINESS, UPDATE_BUSINESS };
+export { CREATE_CUSTOMER, DELETE_CUSTOMER, UPDATE_CUSTOMER };
