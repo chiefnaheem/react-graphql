@@ -6,6 +6,7 @@ const GET_BUSINESSES = gql`
       name
         owner
         address
+        type
     }
   }
 `;
@@ -16,6 +17,7 @@ const GET_BUSINESS = gql`
       name
     owner
     address
+    type
     }
   }
 `
