@@ -32,11 +32,11 @@ function App() {
       <ApolloProvider client={client}>
         <Router>
           <Header />
-          <div className='container'>
+          <div className="container">
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/projects/:id' element={<Project />} />
-              <Route path='*' element={<NotFound />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/projects/:id" element={<Project />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Router>
