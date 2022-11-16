@@ -1,21 +1,25 @@
+import Spinner from '.,/spinner';
+import { useQuery } from '@apollo/client';
+import BusinessCard from './businessCard';
+import { GET_BUSINESSES } from '../../queries/businessQueries';
 
-export default function BusinessCard({ business }) {
+export default function Business() {
+  const { loading, error, data } = useQuery(GET_BUSINESSES);
+
+  if (loading) return <Spinner />;
+  if (error) return <p>Something Went Wrong</p>;
+
   return (
-    <div className='col-md-6'>
-      <div className='card mb-3'>
-        <div className='card-body'>
-          <div className='d-flex justify-content-between align-items-center'>
-            <h5 className='card-title'>{business.name}</h5>
-
-            <a className='btn btn-light' href={`/business/${business.id}`}>
-              View
-            </a>
-          </div>
-          <p className='small'>
-            Type: <strong>{business.type}</strong>
-          </p>
+    <>
+      {data.business.length > 0 ? (
+        <div className='row mt-4'>
+          {data.business.map((item) => (
+            <BusinessCard key={item.id} item={item} />
+          ))}
         </div>
-      </div>
-    </div>
+      ) : (
+        <p>No Business</p>
+      )}
+    </>
   );
 }
