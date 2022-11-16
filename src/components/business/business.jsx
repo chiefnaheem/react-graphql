@@ -1,33 +1,21 @@
-import { useQuery } from '@apollo/client';
-import ClientRow from './ClientRow';
-import Spinner from '../spinner';
-import { GET_BUSINESSES } from '../queries/businessQueries';
 
-export default function BusinessComponent() {
-  const { loading, error, data } = useQuery(GET_BUSINESSES);
-
-  if (loading) return <Spinner />;
-  if (error) return <p>Something Went Wrong</p>;
-
+export default function BusinessCard({ business }) {
   return (
-    <>
-      {!loading && !error && (
-        <table className='table table-hover mt-3'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Owner</th>
-              <th>Address</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.clients.map((client) => (
-              <ClientRow key={client.id} client={client} />
-            ))}
-          </tbody>
-        </table>
-      )}
-    </>
+    <div className='col-md-6'>
+      <div className='card mb-3'>
+        <div className='card-body'>
+          <div className='d-flex justify-content-between align-items-center'>
+            <h5 className='card-title'>{business.name}</h5>
+
+            <a className='btn btn-light' href={`/business/${business.id}`}>
+              View
+            </a>
+          </div>
+          <p className='small'>
+            Type: <strong>{business.type}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
