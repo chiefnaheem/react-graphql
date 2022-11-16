@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
-import { ADD_CLIENT } from '../mutations/clientMutations';
-import { GET_CLIENTS } from '../queries/clientQueries';
+import { CREATE_BUSINESS } from '../../mutations/businessMutations';
+import { GET_BUSINESSES } from '../../queries/businessQueries';
 
-export default function AddClientModal() {
+export default function AddBusinessModal() {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [address, setAddress] = useState('');
   const [owner, setOwner] = useState('');
+  
 
-  const [addClient] = useMutation(CREATE_BUSINESS, {
+  const [createBusiness] = useMutation(CREATE_BUSINESS, {
     variables: { name, type, address, owner },
     update(cache, { data: { createBusiness } }) {
-      const { clients } = cache.readQuery({ query: GET_BUSINESSES });
+      const { businesses } = cache.readQuery({ query: GET_BUSINESSES });
 
       cache.writeQuery({
         query: GET_BUSINESSES,
@@ -43,7 +44,7 @@ export default function AddClientModal() {
         type='button'
         className='btn btn-secondary'
         data-bs-toggle='modal'
-        data-bs-target='#addClientModal'
+        data-bs-target='#addBusinessModal'
       >
         <div className='d-flex align-items-center'>
           <FaUser className='icon' />
@@ -53,7 +54,7 @@ export default function AddClientModal() {
 
       <div
         className='modal fade'
-        id='addClientModal'
+        id='addBusinessModal'
         aria-labelledby='addBusinessModalLabel'
         aria-hidden='true'
       >
